@@ -19,7 +19,7 @@ const EditProject = () =>{
 
     const getData = async() =>{
      try {
-      const res = await axios.get(`http://localhost:3100/api/getProject/${prjId}`)
+      const res = await axios.get(`https://chandani-project-management.onrender.com/api/getProject/${prjId}`)
       console.log('edit res',res)
       setProject(res.data)
       
@@ -86,7 +86,7 @@ setProject({...project,task:notDeleted})
       alert('invalid deadline')
      }
      else{
-  const res = await axios.put(`http://localhost:3100/api/updateProject/${prjId}`,project)
+  const res = await axios.put(`https://chandani-project-management.onrender.com/api/updateProject/${prjId}`,project)
   console.log('res',res)
   if(res.data._id){
  navigate('/dashboard')

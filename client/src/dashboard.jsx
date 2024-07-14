@@ -26,7 +26,7 @@ const Dashboard = () => {
   const getData = async () => {
 
     console.log('getdata start')
-    const res = await axios.get(`http://localhost:3100/api/getProjects/${userId}`)
+    const res = await axios.get(`https://chandani-project-management.onrender.com/api/getProjects/${userId}`)
     console.log('get', res.data)
     
     setPdetail(res.data)
@@ -121,7 +121,7 @@ const Dashboard = () => {
 
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3100/api/deleteProject/${id}`)
+      const res = await axios.delete(`https://chandani-project-management.onrender.com/api/deleteProject/${id}`)
       console.log('delprj res', res)
     }
     catch (e) {

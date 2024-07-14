@@ -9,7 +9,7 @@ const Progress = () => {
         const getData = async () => {
             try {
                 console.log('progress',id)
-                const res = await axios.get(`http://localhost:3100/api/getProject/${id}`)
+                const res = await axios.get(`https://chandani-project-management.onrender.com/api/getProject/${id}`)
                 console.log('progress', res.data)
                 setProject(res.data)
             }
@@ -23,7 +23,7 @@ const Progress = () => {
 
     const updateProject = async() =>{
         try{
-            const res = await axios.put(`http://localhost:3100/api/updateProject/${id}`,project)
+            const res = await axios.put(`https://chandani-project-management.onrender.com/api/updateProject/${id}`,project)
             console.log('updatep res',res)
         }
         catch(e){

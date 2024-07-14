@@ -37,7 +37,7 @@ const Createproject = (props) => {
         
         else{
         console.log(project)
-      const res = await axios.post('http://localhost:3100/api/createProject',project)
+      const res = await axios.post('https://chandani-project-management.onrender.com/api/createProject',project)
       console.log('createproject response : ',res)
       if(res.data.pname){
         navigate('/dashboard')

@@ -24,7 +24,7 @@ const handleSignup = async () =>{
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const check = validEmail.test(signup.email)
     if(check==true){
-      const res = await axios.post(`http://localhost:3100/api/createUser`,signup)
+      const res = await axios.post(`https://chandani-project-management.onrender.com/api/createUser`,signup)
    if(res.data.msg=='successfull'){
     navigate('/login')
    }
