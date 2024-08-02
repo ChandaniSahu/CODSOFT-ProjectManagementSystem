@@ -5,7 +5,7 @@ const Home = () => {
   const navigate = useNavigate()
   return (
     <>
-<div className='flex justify-start items-center bg-cover h-screen bg-center text-white bg-[url("./photos/bg2.webp")] '>
+<div className='flex justify-start items-center bg-cover h-screen bg-center text-white bg-[url("./photos/bg2.png")] '>
 
 {/* <img src={bg} className='w-full h-[100vh] '/> */}
 <div className=' pl-[50px] pb-[50px] text-white w-[40rem] text-wrap hresp'>
