@@ -64,17 +64,17 @@ const Createproject = (props) => {
     }
   return (
     <>
-    <div className='bg-[#455867] m-auto m-auto w-[500px] py-[30px] my-[50px] items-center  flex flex-col'>
+    <div className='bg-[#455867] m-auto w-[500px] py-[30px] my-[50px] items-center  flex flex-col max-w-full'>
           <h1 className='text-white text-xl text-bold'>Create Your Project</h1><br/>
         <div>
         <label className='text-[#fed573] '>Project Name :</label><br/>
         <input type='text' placeholder='Enter project name ' onChange={handleInput} name='pname' />
         </div><br/>
 
-       <div >
-        <label className='text-[#fed573] '>Add Your Task</label><br/>
+       <div className='rani'>
+        <label className='text-[#fed573] self-start mb-[-20px]'>Add Your Task</label><br/>
        <input type='text' placeholder='Add task...' value={task.name}
-      onChange={(e)=>{setTask({...task,name:e.target.value})}}className='w-[300px] mb-[15px]'/>
+      onChange={(e)=>{setTask({...task,name:e.target.value})}}className='w-[300px] mb-[15px] max-w-full'/>
       <button onClick={AddTask} className='bg-[#F89128] text-white rounded-sm w-20 h-7 ml-2'>Add</button>
     </div>
 
@@ -83,8 +83,8 @@ const Createproject = (props) => {
           project.task.map((ele,i)=>{
              return(
              <div key={i}>
-              <div className='rounded-sm  flex items-center px-[10px]  w-[390px] my-[10px] py-[2px]
-              text-white bg-dark-blue '>{ele.name}<ImCross className=' absolute ml-[350px] w-[12px] h-[12px]' onClick={()=>{deleteTask(i)}}/></div>
+              <div className='relative rounded-sm flex items-center border px-[10px] w-[390px] my-[10px] py-[2px]
+              text-white bg-dark-blue max-w-full '>{ele.name}<ImCross className=' absolute right-3 w-[12px] h-[12px]' onClick={()=>{deleteTask(i)}}/></div>
               
               </div>
              )

@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scroll::-webkit-scrollbar{
+  display:none;
+  }
+.posSnL{
+  position:absolute;
+  /* left: 360px;
+  top:100px; */
+  /* align-items: center;
+  justify-content: center;
+  display: flex; */
+  margin-left: 360px;
+}
+
+@media (min-width: 0px) and (max-width: 900px) {
+    .rani{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+    
+  }
+
+  @media (min-width: 0px) and (max-width: 390px) {
+   .charu{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color:transparent;
+   }
+   
+ }
+
+ /* 'range': {'min':'0px','max':'433px'}, */
+
+ @media (min-width: 0px) and (max-width: 433px) {
+  .hresp{
+     padding: 0px;
+  }
+  
+}

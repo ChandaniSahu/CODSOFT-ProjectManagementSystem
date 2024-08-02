@@ -1,13 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectLogo from './photos/ProjectLogo.jpeg'
 import { store } from './store'
-import {flush} from './slice'
 import { useDispatch } from 'react-redux'
 import Login from './login'
 import Signup from './signup'
+import { useEffect } from 'react'
+import {flush} from './slice.js'
+import { VscThreeBars } from "react-icons/vsc";
+import { ImCross } from "react-icons/im";
+
+
 const Navbar = () =>{
+     const[showLogin,setShowLogin] = useState(false)
+    const[showSignup,setShowSignup] = useState(false)
+    const[showT,setShowT] = useState(false)
+    const dispatch = useDispatch()
     const[userId,setUserId] = useState(()=>{
             const id = store.getState().user.detail.userID 
             if(id!==''){
@@ -16,24 +25,23 @@ const Navbar = () =>{
                 return ''
             }
     })
-    const[showLogin,setShowLogin] = useState(false)
-    const[showSignup,setShowSignup] = useState(false)
-//     useEffect(()=>{
-//  const userId = store.getState().user.detail.userID
-//  setUserId(userId)
-//     })
-    const dispatch = useDispatch()
+   
+    useEffect(()=>{
+ console.log('navbar',showLogin)
+ console.log('navbar',showSignup)
+    })
+    
     return(
         <>
-       <div className="flex justify-between px-[20px]  items-center  border bg-[#455867]">
+       <div className="relative flex justify-between items-center px-[30px] bg-[#455867] h-[60px]">
         <img
-          src={ProjectLogo} alt="Project Logo" width={100} height={100}
-          className="rounded-full w-14 h-14  "
+          src={ProjectLogo} alt="Project Logo"
+          className="rounded-full w-14 h-14 "
         />
 
 {userId==='' ?
 
-    <div className="pl-5 flex space-x-5  ">
+    <div className="pl-5 flex space-x-5    ">
 {console.log('not loginned',userId)}
           <button onClick={()=>{setShowSignup(true) ;setShowLogin(false)}} className="justify-center items-center flex text-black rounded-xl p-1 w-20 
            border-orange bg-[#E92085] hover:text-white"> Signup</button>
@@ -43,18 +51,31 @@ const Navbar = () =>{
         </div>
         :
         <>
+        
         {console.log('loginned',userId)}
-         <Link  to='/' className='text-white'>Home</Link>
-        <Link  to='/dashboard' className='text-white'>DashBoard</Link>
-        <Link  to='/createproject' className='text-white'>CreateProject</Link>
-        {/* <button onClick={()=>{dispatch(flush());setUserId('');setLogin(true)}}>LogOut</button> */}
-        <Link  to='/' onClick={()=>{dispatch(flush());setUserId('')  }} className='text-white'>LogOut</Link>
-        {/* <Link to='/'></Link> */}
+        <div className='text-white flex justify-between w-[900px] pl-[40px] custom-range:hidden '>
+         <Link  className='hover:text-[#fed573]' to='/' >Home</Link>
+        <Link  className='hover:text-[#fed573]' to='/dashboard' >DashBoard</Link>
+        <Link  className='hover:text-[#fed573]' to='/createproject' >CreateProject</Link>
+        <Link  className='hover:text-[#fed573]' to='/' onClick={()=>{dispatch(flush());setUserId('')  }} >LogOut</Link>
+       </div>
+       {showT==false ?
+       <div className='hidden custom-range:block'><VscThreeBars color='white' size='30px' onClick={()=>{setShowT(true)}}/></div>:
+       <div className='hidden custom-range:flex bg-[#455867] flex justify-between text-white mt-[100px]  py-[20px] absolute right-0 z-10'>
+        <div className='flex flex-col gap-[15px] px-[30px] '>
+       <Link  className='hover:text-[#fed573]'to='/' >Home</Link>
+       <Link  className='hover:text-[#fed573]'to='/dashboard' >DashBoard</Link>
+       <Link  className='hover:text-[#fed573]'to='/createproject' >CreateProject</Link>
+       <Link  className='hover:text-[#fed573]'to='/' onClick={()=>{dispatch(flush());setUserId('')  }}>LogOut </Link>
+       </div>
+       <ImCross size='20px' className='pr-[10px]' onClick={()=>{setShowT(false)}} />
+       </div>
+       }
+       
         </>
        
 }
         
-
       </div>
   {showLogin && <Login setUserId={setUserId} setShowLogin={setShowLogin} />}
   {showSignup && <Signup setShowSignup={setShowSignup} />}

@@ -20,7 +20,8 @@ const slice = createSlice({
         
         flush : (state,action)=>{
           return initialState ;
-        }
+        },
+        
     }
 })
 

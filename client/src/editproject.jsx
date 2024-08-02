@@ -103,7 +103,7 @@ setProject({...project,task:notDeleted})
 }
        return (
         <>
-        <div className='bg-[#455867] m-auto w-[500px] py-[30px] my-[50px] items-center  flex flex-col'>
+        <div className='bg-[#455867] m-auto w-[500px] py-[30px] my-[50px] items-center flex flex-col max-w-full'>
                      <h1 className='text-white text-xl text-bold'>Edit Your Project</h1><br/>
            <div  >
            <label className='text-[#fed573] '>Enter Project Name :</label><br/>
@@ -115,10 +115,10 @@ setProject({...project,task:notDeleted})
             <input type='datetime-local' value={project.dline} onChange={handleInput}name='dline'/>
             </div><br/>
           
-          <div >
-           <label className='text-[#fed573] '>Add Your Task :</label><br/>
+          <div className='charu max-w-full'>
+           <label className='text-[#fed573] self-start mb-[-20px]'>Add Your Task :</label><br/>
           <input type='text' value={task.name} placeholder='Add task...'   
-          onChange={(e)=>{setTask({...task,name:e.target.value})}} className='w-[300px]'/>
+          onChange={(e)=>{setTask({...task,name:e.target.value})}} className='w-[300px] mb-[15px] max-w-full'/>
         {  edited?    <button onClick={addTask} className='bg-[#F89128]  text-white rounded-sm
          w-20 h-7 ml-3'>Add</button> :
          <button onClick={()=>{EditTask(id)}} className='bg-[#F89128]  text-white rounded-sm
@@ -128,11 +128,12 @@ setProject({...project,task:notDeleted})
          
            {project!='' &&
            <>
-           {/* <div className=' pt-3 pb-5 space-y-3'> */}
+           {/* <div className='border max-w-full'> */}
           {
             project.task.map((ele,idx)=>{
               return(
-              <div className='flex justify-between items-center rounded-sm  w-[390px] px-[10px] my-[15px] bg-dark-blue text-white'>
+              <div className='flex justify-between items-center rounded-sm  w-[390px] px-[10px] my-[15px] bg-dark-blue text-white
+              border max-w-full max-h-full'>
                   {ele.name} 
                 <div className='flex  space-x-2 my-[6px] '>
                   <MdOutlineModeEdit onClick={()=>{selectTask(idx)}}/>
