@@ -33,7 +33,7 @@ const Navbar = () =>{
     
     return(
         <>
-       <div className="relative flex justify-between items-center px-[30px] bg-[#455867] h-[60px]">
+       <div className="relative flex justify-between items-center px-[30px] bg-[#020035] h-[60px]">
         <img
           src={ProjectLogo} alt="Project Logo"
           className="rounded-full w-14 h-14 "

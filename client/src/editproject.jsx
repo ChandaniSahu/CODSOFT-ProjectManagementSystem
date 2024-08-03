@@ -103,7 +103,7 @@ setProject({...project,task:notDeleted})
 }
        return (
         <>
-        <div className='bg-[#455867] m-auto w-[500px] py-[30px] my-[50px] items-center flex flex-col max-w-full'>
+        <div className='bg-[#020035] m-auto w-[500px] py-[30px] my-[50px] items-center flex flex-col max-w-full'>
                      <h1 className='text-white text-xl text-bold'>Edit Your Project</h1><br/>
            <div  >
            <label className='text-[#fed573] '>Enter Project Name :</label><br/>

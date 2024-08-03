@@ -48,8 +48,8 @@ const Progress = () => {
             {project != '' &&
                 <>
 
-                    <div className='p-[50px]  bg-[#455867] py-[20px] px-[10px] w-[700px] m-[auto] my-[40px] max-w-full '>
-                        <h1 className='text-white text-xl text-bold justify-center items-center flex flex-col'>Track Your Project</h1><br />
+                    <div className='p-[50px]  bg-[#020035] py-[20px] px-[10px] w-[700px] m-[auto]  my-[40px] max-w-full '>
+                        <h1 className='text-white text-xl text-bold justify-center items-center flex'>Track Your Project</h1><br />
                         <div className='text-white bg-[#F89128] w-[200px] m-[auto] justify-center items-center flex px-[10px] py-[5px] rounded-lg'>{project.pname}</div>
                         {project.task != '' &&
                             <>
@@ -57,7 +57,7 @@ const Progress = () => {
                                 {
                                     project.task.map((ele, ind) => {
                                         return (
-                                            <div className='flex justify-around items-center mx-[auto] border px-[10px]  w-auto max-w-full'>
+                                            <div className='flex justify-around gap-[10px] px-[10px] items-center m-auto w-[auto] max-w-full'>
 
 
                                                 {/* {ele.status?<div className='bg-green-500 w-[20px] h-[20px] rounded-xl '></div> : <div className='bg-black-500 w-[20px] h-[20px] rounded-xl'></div>}  */}
@@ -70,9 +70,9 @@ const Progress = () => {
 
 
                                                 {/* [#d4d4d4], [#b4b4b4], [#909090],[ #636363] and [#494848] */}
-                                                <div className='flex mx-[20px] px-[10px] items-center w-[500px]  text-white border  justify-between bg-white space-x-6 max-h-full max-w-full'>
-                                                    <div className='border border-black  w-[380px] max-h-full max-w-full'>{ele.name}</div>
-                                                    <button onClick={() => { changeStatus(ind) }} className=' bg-[#E92085] rounded-sm w-[50px] h-[30px]  border border-black'>{ele.status ? '✓' : '[]'}</button>
+                                                <div className='flex  items-center text-white border border-green-500 justify-between bg-white max-w-full'>
+                                                    <div className='border border-black  w-[380px]'>{ele.name}</div>
+                                                    <button onClick={() => { changeStatus(ind) }} className=' bg-[#E92085] rounded-sm px-[10px] border border-black max-w-full'>{ele.status ? '✓' : '[]'}</button>
                                                 </div>
                                             </div>
                                         )
