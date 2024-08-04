@@ -8,9 +8,9 @@ const Home = () => {
 <div className='flex justify-start items-center bg-cover h-screen bg-center text-white bg-[url("./photos/bg2.png")] '>
 
 {/* <img src={bg} className='w-full h-[100vh] '/> */}
-<div className=' pl-[50px] pb-[50px] text-white w-[40rem] text-wrap hresp'>
+<div className=' pl-[50px] pb-[50px] text-white w-[40rem] text-wrap homRes:pl-[5px] '>
   <div className='text-[3rem] '>Welcome ! In Our</div>   
- <div className=' text-[4rem] text-wrap '>Project Management Tool</div> 
+ <div className=' text-[4rem] text-wrap homRes:text-[3rem]'>Project Management Tool</div> 
    <pre className=' text-wrap '>            
              {
             `Our tool helps you streamline your projects, 

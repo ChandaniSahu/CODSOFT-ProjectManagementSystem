@@ -9,6 +9,7 @@ export default {
    
      screens: {
           'custom-range': {'min':'0px','max':'500px'},
+          'homRes': {'min':'0px','max':'433px'},
            'ch':'569px'
            },
       extend:{

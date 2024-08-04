@@ -70,8 +70,8 @@ const Progress = () => {
 
 
                                                 {/* [#d4d4d4], [#b4b4b4], [#909090],[ #636363] and [#494848] */}
-                                                <div className='flex  items-center text-white border border-green-500 justify-between bg-white max-w-full'>
-                                                    <div className='border border-black  w-[380px]'>{ele.name}</div>
+                                                <div className='flex  items-center text-white border  justify-between border proRes'>
+                                                    <div className='w-[380px]  '>{ele.name}</div>
                                                     <button onClick={() => { changeStatus(ind) }} className=' bg-[#E92085] rounded-sm px-[10px] border border-black max-w-full'>{ele.status ? '✓' : '[]'}</button>
                                                 </div>
                                             </div>

@@ -137,7 +137,7 @@ const Dashboard = () => {
         {
               Pdetail.map((ele, projectInd) => {
                 return (
-                  <div className='bg-[#020035] rounded-lg border p-[20px] space-y-[15px] max-w-full m-[10px]  '>
+                  <div className='bg-[#020035] rounded-lg border max-w-full m-[10px] p-[15px] '>
               
                     <div className='flex justify-between  items-center w-[270px] space-x-[140px] '>
                       <h1>{ele.pname}</h1>

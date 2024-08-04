@@ -41,7 +41,7 @@ const Login =({setShowLogin,setUserId})=>{
     }
     return(
         <>
-  <div  className='relative bg-[#455867] posSnL z-10 w-[280px] mt-[100px] p-[20px] rounded-lg
+  <div  className='relative bg-[#455867] posSnL z-10 w-[280px] posS mt-[50px] p-[20px] rounded-lg
         h-[300px] items-center justify-center flex flex-col '>
             <h1 className='text-white  text-xl '>Login</h1><br/>
        <div> 

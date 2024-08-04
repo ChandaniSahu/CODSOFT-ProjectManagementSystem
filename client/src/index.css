@@ -5,14 +5,11 @@
 .scroll::-webkit-scrollbar{
   display:none;
   }
+
 .posSnL{
   position:absolute;
-  /* left: 360px;
-  top:100px; */
-  /* align-items: center;
-  justify-content: center;
-  display: flex; */
-  margin-left: 360px;
+  margin-left:calc(35% - 50px);
+  
 }
 
 @media (min-width: 0px) and (max-width: 900px) {
@@ -38,9 +35,27 @@
 
  /* 'range': {'min':'0px','max':'433px'}, */
 
- @media (min-width: 0px) and (max-width: 433px) {
+ /* @media (min-width: 0px) and (max-width: 433px) {
   .hresp{
-     padding: 0px;
+     padding-left:10 px;
+
   }
+ }  */
+
+  @media (min-width: 0px) and (max-width: 600px) {
+    .posSnL{
+      position:absolute;
+      margin-left:calc(15% - 20px);
+      
+      
+    }
   
+}
+
+@media (min-width: 0px) and (max-width: 505px) {
+  .proRes{
+    width: 300px;
+    
+    
+  }
 }
