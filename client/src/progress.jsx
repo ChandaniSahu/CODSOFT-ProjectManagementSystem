@@ -1,15 +1,16 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { store } from './store'
+import React, { useContext, useEffect, useState } from 'react'
+import { context } from './App'
 // import './App.css'
 const Progress = () => {
     const [project, setProject] = useState('')
-    const id = store.getState().user.detail.prjID;
+    // const id = store.getState().user.detail.prjID;
+    const {unpDetail} = useContext(context)
     useEffect(() => {
         const getData = async () => {
             try {
-                console.log('progress', id)
-                const res = await axios.get(`https://chandani-project-management.onrender.com/api/getProject/${id}`)
+                // console.log('progress', id)
+                const res = await axios.get(`http://localhost:3000/api/getProject/${unpDetail.prjId}`)
                 console.log('progress', res.data)
                 setProject(res.data)
             }
@@ -23,7 +24,7 @@ const Progress = () => {
 
     const updateProject = async () => {
         try {
-            const res = await axios.put(`https://chandani-project-management.onrender.com/api/updateProject/${id}`, project)
+            const res = await axios.put(`http://localhost:3000/api/updateProject/${unpDetail.prjId}`, project)
             console.log('updatep res', res)
         }
         catch (e) {

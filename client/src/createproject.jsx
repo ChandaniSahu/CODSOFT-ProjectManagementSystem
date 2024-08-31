@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import {store}  from './store' 
 import { ImCross } from "react-icons/im";
 import { useNavigate } from 'react-router-dom';
+import { context } from './App';
 
-const Createproject = (props) => {
+
+const Createproject = () => {
     const [project,setProject]=useState({userId:'',pname:'',task:[],dline:''})
     const [task,setTask]=useState({name:'' , status:false})
-    const id = store.getState().user.detail.userID
+    
+    const {unpDetail} = useContext(context)
     const navigate = useNavigate()
     // const [tasklist,setTasklist]=useState([])
     const handleInput=(e)=>{
@@ -37,7 +39,9 @@ const Createproject = (props) => {
         
         else{
         console.log(project)
-      const res = await axios.post('https://chandani-project-management.onrender.com/api/createProject',project)
+      const res = await axios.post('http://localhost:3000/api/createProject',{project},{
+        headers:{Authorization: unpDetail.token}}
+      )
       console.log('createproject response : ',res)
       if(res.data.pname){
         navigate('/dashboard')
@@ -51,7 +55,7 @@ const Createproject = (props) => {
       }
     }
     useEffect(()=>{
-      setProject({...project,userId:id})
+      setProject({...project,userId:unpDetail.userId})
       // const day = new Date(project.dline).getDate()
       // console.log('dline',day)
     },[])
@@ -64,7 +68,9 @@ const Createproject = (props) => {
     }
   return (
     <>
-    <div className='bg-[#020035] m-auto w-[500px] py-[30px] my-[50px] items-center  flex flex-col max-w-full'>
+    {unpDetail.texp=='expired'?<>{navigate('/expired')}</>:
+    <>
+   <div className='bg-[#020035] m-auto w-[500px] py-[30px] my-[50px] items-center  flex flex-col max-w-full'>
           <h1 className='text-white text-xl text-bold'>Create Your Project</h1><br/>
         <div>
         <label className='text-[#fed573] '>Project Name :</label><br/>
@@ -100,7 +106,7 @@ const Createproject = (props) => {
     
    <button onClick={()=>{CreateProject(project.dline)}} className='bg-[#E92085] text-white rounded-sm
          w-20 h-8 '>Save</button>
-    </div>
+    </div></>}
         
     </>
   )

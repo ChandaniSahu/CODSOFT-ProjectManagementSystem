@@ -1,8 +1,8 @@
-import React from 'react';
-import bg from './photos/bg2.png'
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { context } from './App';
 const Home = () => {
-  const navigate = useNavigate()
+  const {setShowSignup} = useContext(context)
   return (
     <>
 <div className='flex justify-start items-center bg-cover h-screen bg-center text-white bg-[url("./photos/bg2.png")] '>
@@ -20,7 +20,7 @@ outstanding results.`
     </pre><br/>
     <button className='bg-[#E92085]
      text-white rounded-xl px-[10px] py-[5px] '
-     onClick={() => {navigate('/signup') }}>Get Started →</button>
+     onClick={() => setShowSignup(true)}>Get Started →</button>
   </div>  
    </div>
       </>
@@ -28,9 +28,4 @@ outstanding results.`
 };
 
 export default Home;
-{/*
-  absolute left-[80px] top-[120px] 
-  absolute left-[80px] top-[160px]
-  absolute left-[80px] top-[230px] range:top-[300px] max-h-full max-w-full
-  absolute left-[80px] top-[320px]  range:top-[390px] 
-     */}
+

@@ -2,7 +2,10 @@ const express = require('express')
 const router = express.Router()
 const User = require('../schema/userSchema')
 const Project = require('../schema/projectSchema')
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const Auth = require('./Auth')
+require('dotenv').config()
 
 router.post('/createUser' ,async(req,res)=>{
   try{
@@ -47,45 +50,34 @@ router.post('/createUser' ,async(req,res)=>{
 })
 
 router.post('/CheckUser' ,async(req,res)=>{
+  console.log('start login in server')
   try{
   const {email,pass}= req.body
    if(!email || !pass){
     res.json({msg:'fill'})
   }
 else{
-  // const hashpass=await bcrypt.hash(pass,10)
-  // console.log('hashpass from login',hashpass)
     const user= await User.findOne({email})
-    // console.log('user in login',user)
-  if(user){
+    console.log('user in login',user)
+      if(user==''|| user==null){console.log('invalid email or password')}
+      else{
       const passcheck = await bcrypt.compare(pass,user.pass)
-      if(passcheck==true){
-  // console.log('comparison',passcheck)
-     res.json(user)
-      }
+       console.log('comparison',passcheck)
+           if(passcheck==true){
+           const token =  jwt.sign({uname:user.uname,id:user._id}, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+           console.log('token',token)
+           res.json({msg:'token',token})  
+          }
       
-  else{
-    res.json({msg:'failed'})
-  }
-}
-else{
-  res.json({msg:'failed'})
-}
-  //  const user= await User.findOne({email})
-  // if(user){
-  //   console.log('pass from db',user.pass)
+          else{
+          res.json({msg:'failed'})
+          }
+     }
+    // else{
+    // res.json({msg:'Some issue in login'})
+    // }
+ } 
 
-  // }
-  // else{
-  //   console.log('something is wrong')
-  // }
-  // if(user!=null){
-  //   res.json(user)
-  // }
-  // else{
-  //   res.json({msg:'failed'})
-  // }
-} 
   }
   catch(e){
     console.log('server error in login',e)
@@ -93,9 +85,9 @@ else{
 
 })
 
-router.post('/createProject',async(req, res)=>{
+router.post('/createProject',Auth,async(req, res)=>{
  try{
-  const {userId,pname,task,dline}=req.body
+  const {userId,pname,task,dline}=req.body.project
   const project= await  Project.create({userId,pname,task,dline})
   // console.log('project after createproject',project)
   if(project){
@@ -110,14 +102,18 @@ catch(e){
 }
 })
 
-router.get('/getProjects/:userId',async(req,res)=>{
+router.post('/getProjects',Auth,async(req,res)=>{
+  console.log('getproject api started in server')
   try{
-    const {userId} = req.params 
-    // console.log('userid',userId)
-    const data = await Project.find({userId:userId})
-    // console.log('getprojects from db',data)
-    if(data){
-       res.json(data)
+    const userId= req.body.userId
+    console.log('userid',req.body)
+    const projects = await Project.find({userId:userId})
+    console.log('getprojects from db',projects)
+    if(projects!=''){
+       res.json(projects)
+    }
+    else if(projects==''){
+      res.json({msg:'no projects'})
     }
     else{
       console.log('problem in fetching projects')

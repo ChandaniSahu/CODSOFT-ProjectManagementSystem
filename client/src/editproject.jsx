@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import {store} from './store'
 import { MdOutlineModeEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
+import { context } from './App';
 
 const EditProject = () =>{
     const [project,setProject] = useState([])
@@ -11,7 +11,7 @@ const EditProject = () =>{
     const [edited,setEdited] = useState(true)
     const [id,setId] = useState('')
     const navigate = useNavigate()
-    const prjId = store.getState().user.detail.prjID
+    const {unpDetail} = useContext(context)
 
     const handleInput = (e) =>{
         setProject({...project,[e.target.name]:e.target.value})
@@ -19,7 +19,7 @@ const EditProject = () =>{
 
     const getData = async() =>{
      try {
-      const res = await axios.get(`https://chandani-project-management.onrender.com/api/getProject/${prjId}`)
+      const res = await axios.get(`http://localhost:3000/api/getProject/${unpDetail.prjId}`)
       console.log('edit res',res)
       setProject(res.data)
       
@@ -86,7 +86,7 @@ setProject({...project,task:notDeleted})
       alert('invalid deadline')
      }
      else{
-  const res = await axios.put(`https://chandani-project-management.onrender.com/api/updateProject/${prjId}`,project)
+  const res = await axios.put(`http://localhost:3000/api/updateProject/${unpDetail.prjId}`,project)
   console.log('res',res)
   if(res.data._id){
  navigate('/dashboard')
