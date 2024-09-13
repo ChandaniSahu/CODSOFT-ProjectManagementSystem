@@ -39,7 +39,7 @@ const Createproject = () => {
         
         else{
         console.log(project)
-      const res = await axios.post('https://project-management-system.vercel.app/api/createProject',{project},{
+      const res = await axios.post('https://project-management-system-ivory.vercel.app/api/createProject',{project},{
         headers:{Authorization: unpDetail.token}}
       )
       console.log('createproject response : ',res)

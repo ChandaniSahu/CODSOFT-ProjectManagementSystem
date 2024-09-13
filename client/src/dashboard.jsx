@@ -33,7 +33,7 @@ const Dashboard = () => {
   const getData = async () => {
 
     console.log('getdata start')
-    const res = await axios.post(`https://project-management-system.vercel.app
+    const res = await axios.post(`https://project-management-system-ivory.vercel.app
 
 
 /api/getProjects`,{},{
@@ -138,7 +138,7 @@ return{
 
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`https://project-management-system.vercel.app
+      const res = await axios.delete(`https://project-management-system-ivory.vercel.app
 
 
 /api/deleteProject/${id}`)

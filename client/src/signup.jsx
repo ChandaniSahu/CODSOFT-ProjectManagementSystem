@@ -30,7 +30,7 @@ const handleSignup = async () =>{
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const check = validEmail.test(signup.email)
     if(check==true){
-      const res = await axios.post(`https://project-management-system.vercel.app
+      const res = await axios.post(`https://project-management-system-ivory.vercel.app
 /api/createUser`,signup)
    if(res.data.msg=='successfull'){
     navigate('/login')

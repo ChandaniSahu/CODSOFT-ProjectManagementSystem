@@ -10,7 +10,7 @@ const Progress = () => {
         const getData = async () => {
             try {
                 // console.log('progress', id)
-                const res = await axios.get(`https://project-management-system.vercel.app
+                const res = await axios.get(`https://project-management-system-ivory.vercel.app
 
 
 /api/getProject/${unpDetail.prjId}`)
@@ -27,7 +27,7 @@ const Progress = () => {
 
     const updateProject = async () => {
         try {
-            const res = await axios.put(`https://project-management-system.vercel.app
+            const res = await axios.put(`https://project-management-system-ivory.vercel.app
 
 
 /api/updateProject/${unpDetail.prjId}`, project)

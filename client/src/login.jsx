@@ -31,7 +31,7 @@ const Login =()=>{
             const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const check = validEmail.test(login.email)
             if(check==true){
-           const res = await axios.post('https://project-management-system.vercel.app/api/CheckUser',login)
+           const res = await axios.post('https://project-management-system-ivory.vercel.app/api/CheckUser',login)
            console.log('handlelogin',res.data.msg)
               if(res.data.msg=='failed'){
               alert('email or password is wrong')

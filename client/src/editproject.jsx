@@ -19,7 +19,7 @@ const EditProject = () =>{
 
     const getData = async() =>{
      try {
-      const res = await axios.get(`https://project-management-system.vercel.app
+      const res = await axios.get(`https://project-management-system-ivory.vercel.app
 
 
 /api/getProject/${unpDetail.prjId}`)
@@ -89,7 +89,7 @@ setProject({...project,task:notDeleted})
       alert('invalid deadline')
      }
      else{
-  const res = await axios.put(`https://project-management-system.vercel.app
+  const res = await axios.put(`https://project-management-system-ivory.vercel.app
 
 
 /api/updateProject/${unpDetail.prjId}`,project)
