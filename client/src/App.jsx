@@ -14,11 +14,11 @@ const context = createContext()
 const App = () =>{
   const [showSignup,setShowSignup] = useState(false)
   const [showLogin,setShowLogin] = useState(false)
-  
+  const [click,setClick] = useState('')
   const[unpDetail,setUnpDetail] = useState(()=>{
     const retrievedDetails = localStorage.getItem('unpDetail')
     if(retrievedDetails==='undefined' || retrievedDetails==='null' || retrievedDetails===null || retrievedDetails===undefined ){
-     return {userId:'',prjId:'',token:'',texp:''}
+      return {userId:'',prjId:'',uname:'',token:'',texp:''}
  
     }else{
      return JSON.parse(retrievedDetails)
@@ -37,7 +37,8 @@ const App = () =>{
       setShowLogin,
       unpDetail,
       setUnpDetail,
-      
+      click,
+      setClick
   }}>
  
     <Navbar/>

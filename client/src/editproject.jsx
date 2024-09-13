@@ -11,7 +11,7 @@ const EditProject = () =>{
     const [edited,setEdited] = useState(true)
     const [id,setId] = useState('')
     const navigate = useNavigate()
-    const {unpDetail} = useContext(context)
+    const {unpDetail,setClick} = useContext(context)
 
     const handleInput = (e) =>{
         setProject({...project,[e.target.name]:e.target.value})
@@ -19,7 +19,10 @@ const EditProject = () =>{
 
     const getData = async() =>{
      try {
-      const res = await axios.get(`http://localhost:3000/api/getProject/${unpDetail.prjId}`)
+      const res = await axios.get(`https://project-management-system.vercel.app
+
+
+/api/getProject/${unpDetail.prjId}`)
       console.log('edit res',res)
       setProject(res.data)
       
@@ -86,10 +89,14 @@ setProject({...project,task:notDeleted})
       alert('invalid deadline')
      }
      else{
-  const res = await axios.put(`http://localhost:3000/api/updateProject/${unpDetail.prjId}`,project)
+  const res = await axios.put(`https://project-management-system.vercel.app
+
+
+/api/updateProject/${unpDetail.prjId}`,project)
   console.log('res',res)
   if(res.data._id){
  navigate('/dashboard')
+ setClick('d')
   }
 
     }
@@ -104,20 +111,20 @@ setProject({...project,task:notDeleted})
        return (
         <>
         <div className='bg-[#020035] m-auto w-[500px] py-[30px] my-[50px] items-center flex flex-col max-w-full'>
-                     <h1 className='text-white text-xl text-bold'>Edit Your Project</h1><br/>
+                     <h1 className='text-[30px] text-white font-[500]'>Edit Your Task</h1><br/>
            <div  >
-           <label className='text-[#fed573] '>Enter Project Name :</label><br/>
+           <label className='text-[#fed573] '>Task Name :</label><br/>
            <input type='text' value={project.pname} onChange={handleInput}name='pname'/>
            </div><br/>
             
             <div>
-            <label className='text-[#fed573] '>Enter Project Deadline :</label> <br/>
+            <label className='text-[#fed573] '>Task Deadline :</label> <br/>
             <input type='datetime-local' value={project.dline} onChange={handleInput}name='dline'/>
             </div><br/>
           
           <div className='charu max-w-full'>
-           <label className='text-[#fed573] self-start mb-[-20px]'>Add Your Task :</label><br/>
-          <input type='text' value={task.name} placeholder='Add task...'   
+           <label className='text-[#fed573] self-start mb-[-20px]'>Add SubTask :</label><br/>
+          <input type='text' value={task.name} placeholder='Enter Subtask...'   
           onChange={(e)=>{setTask({...task,name:e.target.value})}} className='w-[300px] mb-[15px] max-w-full'/>
         {  edited?    <button onClick={addTask} className='bg-[#F89128]  text-white rounded-sm
          w-20 h-7 ml-3'>Add</button> :
@@ -136,8 +143,8 @@ setProject({...project,task:notDeleted})
               border max-w-full max-h-full'>
                   {ele.name} 
                 <div className='flex  space-x-2 my-[6px] '>
-                  <MdOutlineModeEdit onClick={()=>{selectTask(idx)}}/>
-                <MdOutlineDelete onClick={()=>{deleteTask(idx)}}/>
+                  <MdOutlineModeEdit title='Edit' onClick={()=>{selectTask(idx)}}/>
+                <MdOutlineDelete title='Delete'onClick={()=>{deleteTask(idx)}}/>
                 </div>
             </div>
     

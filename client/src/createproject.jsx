@@ -9,7 +9,7 @@ const Createproject = () => {
     const [project,setProject]=useState({userId:'',pname:'',task:[],dline:''})
     const [task,setTask]=useState({name:'' , status:false})
     
-    const {unpDetail} = useContext(context)
+    const {unpDetail,setClick} = useContext(context)
     const navigate = useNavigate()
     // const [tasklist,setTasklist]=useState([])
     const handleInput=(e)=>{
@@ -39,12 +39,13 @@ const Createproject = () => {
         
         else{
         console.log(project)
-      const res = await axios.post('http://localhost:3000/api/createProject',{project},{
+      const res = await axios.post('https://project-management-system.vercel.app/api/createProject',{project},{
         headers:{Authorization: unpDetail.token}}
       )
       console.log('createproject response : ',res)
       if(res.data.pname){
         navigate('/dashboard')
+        setClick('d')
       }
         }
       }
@@ -71,15 +72,15 @@ const Createproject = () => {
     {unpDetail.texp=='expired'?<>{navigate('/expired')}</>:
     <>
    <div className='bg-[#020035] m-auto w-[500px] py-[30px] my-[50px] items-center  flex flex-col max-w-full'>
-          <h1 className='text-white text-xl text-bold'>Create Your Project</h1><br/>
+          <h1 className=' text-[30px] text-white font-[500]'>Create Your Task</h1><br/>
         <div>
-        <label className='text-[#fed573] '>Project Name :</label><br/>
-        <input type='text' placeholder='Enter project name ' onChange={handleInput} name='pname' />
+        <label className='text-[#fed573] '>Task Name :</label><br/>
+        <input type='text' placeholder='Enter task name... ' onChange={handleInput} name='pname' />
         </div><br/>
 
        <div className='rani'>
-        <label className='text-[#fed573] self-start mb-[-20px]'>Add Your Task</label><br/>
-       <input type='text' placeholder='Add task...' value={task.name}
+        <label className='text-[#fed573] self-start mb-[-20px]'>Add SubTask</label><br/>
+       <input type='text' placeholder='Enter SubTask...' value={task.name}
       onChange={(e)=>{setTask({...task,name:e.target.value})}}className='w-[300px] mb-[15px] max-w-full'/>
       <button onClick={AddTask} className='bg-[#F89128] text-white rounded-sm w-20 h-7 ml-2'>Add</button>
     </div>
@@ -99,7 +100,7 @@ const Createproject = () => {
       
 
     <div  >
-      <label className='text-[#fed573] '>Deadline : </label><br/>
+      <label className='text-[#fed573] '>Task Deadline : </label><br/>
     <input type="datetime-local"  name="dline"
      onChange={handleInput}/>
       </div><br/>

@@ -11,7 +11,7 @@ const Login =()=>{
      
     const [login , setLogin]=useState({email:'' , pass:''});
     const [showEye,setShowEye] = useState(false)
-    const {unpDetail,setUnpDetail,setShowLogin} = useContext(context)
+    const {unpDetail,setUnpDetail,setShowLogin,setClick} = useContext(context)
     const navigate = useNavigate()
     // const dispatch = useDispatch()
     const handleInput=(e)=>{
@@ -31,7 +31,7 @@ const Login =()=>{
             const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const check = validEmail.test(login.email)
             if(check==true){
-           const res = await axios.post('http://localhost:3000/api/CheckUser',login)
+           const res = await axios.post('https://project-management-system.vercel.app/api/CheckUser',login)
            console.log('handlelogin',res.data.msg)
               if(res.data.msg=='failed'){
               alert('email or password is wrong')
@@ -50,14 +50,16 @@ const Login =()=>{
               console.log('unptoken',unpDetail.token)
               const detoken = jwtDecode(res.data.token)
               console.log('decodedtoken',detoken)
-                  if(detoken.id!=''){
-                  setUnpDetail((prevState) => ({
-                  ...prevState,
-                  userId:detoken.id
-                  }));
-                  navigate('/dashboard')
-                  setShowLogin(false)
-                 }
+              if(detoken.id!='' && detoken.uname!=''){
+                setUnpDetail((prevState) => ({
+                ...prevState,
+                userId:detoken.id,
+                uname:detoken.uname
+                }));
+                navigate('/dashboard')
+                setShowLogin(false)
+                setClick('d')
+               }
         
              }
             }
@@ -97,7 +99,7 @@ const Login =()=>{
        </div> 
      </div> <br/><br/>
 
-        <ImCross size='10px' color='white'className='absolute right-0 top-0 m-[5px] ' 
+        <ImCross size='10px' color='white'className='absolute right-0 top-0 m-[5px] cursor-pointer' 
         onClick={()=>{setShowLogin(false)}} />
         <button onClick={handleLogin}  className='bg-[#E92085] text-white rounded-xl w-20 h-8'>Login</button>
  </div>

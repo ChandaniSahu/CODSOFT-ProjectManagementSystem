@@ -10,7 +10,10 @@ const Progress = () => {
         const getData = async () => {
             try {
                 // console.log('progress', id)
-                const res = await axios.get(`http://localhost:3000/api/getProject/${unpDetail.prjId}`)
+                const res = await axios.get(`https://project-management-system.vercel.app
+
+
+/api/getProject/${unpDetail.prjId}`)
                 console.log('progress', res.data)
                 setProject(res.data)
             }
@@ -24,7 +27,10 @@ const Progress = () => {
 
     const updateProject = async () => {
         try {
-            const res = await axios.put(`http://localhost:3000/api/updateProject/${unpDetail.prjId}`, project)
+            const res = await axios.put(`https://project-management-system.vercel.app
+
+
+/api/updateProject/${unpDetail.prjId}`, project)
             console.log('updatep res', res)
         }
         catch (e) {
@@ -50,8 +56,8 @@ const Progress = () => {
                 <>
 
                     <div className='p-[50px]  bg-[#020035] py-[20px] px-[10px] w-[700px] m-[auto]  my-[40px] max-w-full '>
-                        <h1 className='text-white text-xl text-bold justify-center items-center flex'>Track Your Project</h1><br />
-                        <div className='text-white bg-[#F89128] w-[200px] m-[auto] justify-center items-center flex px-[10px] py-[5px] rounded-lg'>{project.pname}</div>
+                        <h1 className='text-[30px] text-white font-[500] justify-center items-center flex'>Track Your Task</h1><br />
+                        <div className='text-white text-[20px] bg-[#F89128] w-[200px] m-[auto] justify-center items-center flex px-[10px] py-[5px] rounded-lg'>{project.pname}</div>
                         {project.task != '' &&
                             <>
 

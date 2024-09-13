@@ -19,10 +19,11 @@ const Dashboard = () => {
 
   const [Pdetail, setPdetail] = useState([])
   const [NoPrj,setNoprj]=useState()
-  const {unpDetail,setUnpDetail} = useContext(context)
+  const {unpDetail,setUnpDetail,setClick} = useContext(context)
   
   const navigateCProject = () => {
     navigate('/Createproject')
+    setClick('c')
   }
 
   useEffect(()=>{
@@ -32,7 +33,10 @@ const Dashboard = () => {
   const getData = async () => {
 
     console.log('getdata start')
-    const res = await axios.post(`http://localhost:3000/api/getProjects`,{},{
+    const res = await axios.post(`https://project-management-system.vercel.app
+
+
+/api/getProjects`,{},{
       headers:{Authorization: unpDetail.token}
   })
   if(res.data.msg=='no projects'){
@@ -71,6 +75,7 @@ const Dashboard = () => {
     prjId:Id
   }));
     navigate('/progress')
+    setClick('')
 
   }
 
@@ -86,7 +91,7 @@ const Dashboard = () => {
   // }
 
   const CalDline = (d) => {
-    let deadLine , bool=true
+    let  bool=true
     console.log('caldline start')
     const endDate = new Date(d)
     const startDate = new Date()
@@ -133,7 +138,10 @@ return{
 
   const deleteProject = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3000/api/deleteProject/${id}`)
+      const res = await axios.delete(`https://project-management-system.vercel.app
+
+
+/api/deleteProject/${id}`)
       console.log('delprj res', res)
     }
     catch (e) {
@@ -149,6 +157,7 @@ return{
       prjId:Id
     }));
     navigate('/editproject')
+    setClick('')
   }
 
   const calPercent = (task) => {
@@ -165,11 +174,11 @@ return{
     <>
     {unpDetail.texp=='expired'?<>{navigate('/expired')}</>:
     <> 
-      <div className='relative bg-white py-[20px] text-white h-auto'>
+      <div className='relative bg-white py-[20px] text-white h-auto z-0'>
         <h1 className='flex justify-center items-center text-[30px] text-[#455867] font-[500]'>Dashboard</h1><br /> 
         
    
-      {NoPrj=='no projects'? <h1 className='text-black  pl-[20px] h-[470px]'>here is no projects</h1>:
+      {NoPrj=='no projects'? <h1 className='text-black  pl-[20px] h-[470px]'>here is no tasks</h1>:
       <>{Pdetail==''?<div className='flex flex-col justify-center items-center h-[470px] text-[#455867]'><ThreeCircles color="#455867" height={50} width={50} />
          <h1 >loading...</h1></div>:
       <>
@@ -182,8 +191,8 @@ return{
                     <div className='flex justify-between  items-center w-[300px] text-[25px] font-[500]  '>
                       <h1>{ele.pname}</h1>
                       <div className='flex space-x-2' >
-                        <MdOutlineDelete onClick={() => { deleteProject(ele._id) }} />
-                        <MdOutlineModeEdit onClick={() => { selectProject(ele._id) }} />
+                        <MdOutlineDelete title='Delete Task' onClick={() => { deleteProject(ele._id) }} />
+                        <MdOutlineModeEdit title='Edit Task'onClick={() => { selectProject(ele._id) }} />
                       </div>
                     </div>
 
@@ -237,7 +246,7 @@ return{
        
      
       </>}</>}
-      <button onClick={navigateCProject} className='absolute bottom-0 right-0 m-[20px] w-[40px] h-[40px] rounded-[50%] bg-[#F89128] text-white text-[20px] '>+</button>
+      <button onClick={navigateCProject} title='Create Task' className='absolute bottom-0 right-0 m-[20px] w-[40px] h-[40px] rounded-[50%] bg-[#F89128] text-white text-[20px] '>+</button>
      </div></>}
      
         

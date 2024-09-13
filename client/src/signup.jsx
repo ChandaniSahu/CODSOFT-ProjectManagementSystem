@@ -30,7 +30,8 @@ const handleSignup = async () =>{
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const check = validEmail.test(signup.email)
     if(check==true){
-      const res = await axios.post(`http://localhost:3000/api/createUser`,signup)
+      const res = await axios.post(`https://project-management-system.vercel.app
+/api/createUser`,signup)
    if(res.data.msg=='successfull'){
     navigate('/login')
    }
@@ -80,7 +81,7 @@ const handleSignup = async () =>{
          <input type='password' placeholder='Enter Confirm Password : ' value={signup.Cpass}
           name='Cpass' className='w-[230px] rounded-sm'onChange={handleInput}/>
           </div><br/> 
-          <ImCross size='10px' color='white'className='absolute right-0 top-0 m-[8px] ' 
+          <ImCross size='10px' color='white'className='absolute right-0 top-0 m-[8px] cursor-pointer' 
           onClick={()=>{setShowSignup(false)}} />
          <button onClick={handleSignup} className='bg-[#E92085] text-white rounded-xl w-20 h-8'>Signup</button>
        
